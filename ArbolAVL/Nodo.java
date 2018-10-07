@@ -57,14 +57,7 @@ public class Nodo <T>{
         Nodo<T> q = izq;
         Nodo<T> p = this;
         p.izq=q.der;
-        p.fe=0;
         q.der=p;
-        q.fe=0;
-        if(p.izq!=null&&der==null)//nuevo
-        {
-            p.fe--;
-            q.fe++;
-        }
         return q;
     }
     
@@ -76,15 +69,8 @@ public class Nodo <T>{
     {
         Nodo<T> q = der;
         Nodo<T> p = this;
-        p.der=q.izq;
-        p.fe=0;
+        p.der=q.izq;//q.izq siempre existe
         q.izq=p;
-        q.fe=0;
-        if(p.izq!=null&&der==null)//nuevo
-        {
-            p.fe--;
-            q.fe++;
-        }
         return q;
     }
 
@@ -93,6 +79,7 @@ public class Nodo <T>{
         String codigo="";
         String id="n"+this.hashCode();
         codigo+=id+"[label=\""+llave+"fe:"+fe+"item:"+item.toString()+"\"];\n";
+        //codigo+=id+"[label=\""+llave+"\"];\n";
         if(izq!=null)
         {
             codigo+=id+"->n"+izq.hashCode()+";\n";
